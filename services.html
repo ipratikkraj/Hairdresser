@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hairdresser | Services</title>
+  <title>Hairdresser|Services</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <!-- Option 1: Include in HTML -->
@@ -12,10 +12,18 @@
 </head>
 
 <style>
+  html { scroll-behavior: smooth; }
+  body { overflow-x: hidden; }
+
   .navbar {
     padding: 0px;
     background: black;
   }
+
+  /* Make hamburger visible on dark navbar */
+  .navbar-dark .navbar-toggler { border-color: rgba(255,255,255,.55); }
+  .navbar-dark .navbar-toggler:focus { box-shadow: 0 0 0 .1rem rgba(255,255,255,.4); }
+  .navbar-dark .navbar-toggler-icon { filter: invert(1) grayscale(100%); }
 
   .nav-link {
     color: white;
@@ -78,6 +86,19 @@
     padding: 3% 0%;
   }
 
+  /* Keep all tabs on one line across devices */
+  .nav-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: .5rem;
+  }
+  .nav-tabs .nav-link {
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+
   .whatsapp-float {
     position: fixed;
     bottom: 20px;
@@ -103,38 +124,78 @@
     background-color: #128c7e;
     /* WhatsApp dark green */
   }
+
+  /* Brand image sizing */
+  .navbar-brand img { max-width: 180px; height: 40px; width: auto; object-fit: contain; }
+
+  /* Responsive media */
+  img, video { max-width: 100%; height: auto; }
+  .img-fluid { height: auto !important; }
+
+  /* Mobile collapse aesthetics */
+  @media (max-width: 768px) {
+    .navbar-collapse { margin-right: 0 !important; background: black; padding: 8px 12px; }
+  }
+
+  /* Stylish Glassmorphic Marquee */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+  .marquee-bar {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 8px 0;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  .marquee-inner {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: marquee 20s linear infinite;
+    transform: translateX(-25%);
+  }
+  .marquee-group { display: flex; white-space: nowrap; }
+  .marquee-sep { margin: 0 5px; color: black; text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.6); }
+  @keyframes marquee {
+    0% { transform: translateX(-25%); }
+    100% { transform: translateX(-75%); }
+  }
 </style>
 
 <body>
   <!-- *******************************  Navbar start *************************************** -->
   <section>
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
       <div class="container text-uppercase p-2" style="margin-left: 0px;">
-        <div style="width: 300px;">
-          <a class="navbar-brand font-weight-bold text-white" href="#"><img src="Haidresser.jpg" alt="logo"
-              class="container"></a>
-        </div>
-        <button style="background: white;" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        <a class="navbar-brand font-weight-bold text-white" href="#"><img src="/Haidresser.jpg" alt="logo"
+            class="img-fluid"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          aria-label="Toggle navigation"style="font-size: 25px;padding: 2px 8px;">
+          <span class="bi bi-list"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: -130px;">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto text-uppercase">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="index.html">Home</a>
+              <a class="nav-link" aria-current="page" href="/index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="services.html">Service</a>
+              <a class="nav-link" href="/services.html">Service</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="gallery.html">Gallery</a>
-            </li>
+              <a class="nav-link" href="/gallery.html">Gallery</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" style="margin-right: 20px;" href="#">Contact</a>
+              <a class="nav-link" style="margin-right: 20px;" href="#contact">Contact</a>
             </li>
-
+          </ul>
         </div>
       </div>
     </nav>
@@ -142,9 +203,24 @@
   <!-- *******************************  Navbar END *************************************** -->
   <!-- *******************************  carousel slide start *************************************** -->
   <center>
-    <video src="Brown and White Simple Animated Fashion New Arrival Promo Video.mp4" class="img-fluid"
+    <video src="/Brown and White Simple Animated Fashion New Arrival Promo Video.mp4" class="img-fluid"
       style="margin-top: 73px;" autoplay loop muted>
     </video>
+
+    <div class="marquee-bar">
+      <div class="marquee-inner">
+        <div class="marquee-group">
+          <span class="marquee-sep">Hairdresser Salon Wishes You a Joyful Navratri & Diwali | </span>
+          <span class="marquee-sep">Celebrate the Colors of Navratri with Style | </span>
+          <span class="marquee-sep">This Festive Season, Look Your Best with Hairdresser | </span>
+        </div>
+        <div class="marquee-group" aria-hidden="true">
+          <span class="marquee-sep">Hairdresser Salon Wishes You a Joyful Navratri & Diwali | </span>
+          <span class="marquee-sep">Celebrate the Colors of Navratri with Style | </span>
+          <span class="marquee-sep">This Festive Season, Look Your Best with Hairdresser | </span>
+        </div>
+      </div>
+    </div>
 
     <h3 class="mt-4">OUR SERVICES</h3>
   </center>
@@ -266,7 +342,7 @@
   </div>
   <!-- *******************************  BODY END *************************************** -->
   <!-- *******************************  Footer Start *************************************** -->
-  <footer class="foot">
+  <footer id="contact" class="foot">
     <div class="row">
       <div style="padding: 30px;" class="col-md-6 text-center">
         <h3>Contact Us</h3>
@@ -302,10 +378,24 @@
     </div>
     <div class="col-md-12 text-center bg-light text-dark"
       style="background: #bdbaba3b !important;color: black !important;">
-      <p style="font-size: 0.7rem;">Developed By: Pratik Raj | &copy; 2024. All Rights Reserved.</p>
+      <a style="font-size: 0.7rem;"><a href="https://ipratikkraj.github.io/Pratik-Portfolio/" style="color: black; text-decoration: none;" target="_blank">Developed By: Pratik Raj </a>| &copy; 2024. All Rights Reserved.</p>
     </div>
 
-    <a href="https://wa.me/917004687829" target="_blank" class="whatsapp-float">
+    <!-- Services marquee directly below copyright strip -->
+    <div class="marquee-bar">
+      <div class="marquee-inner">
+        <div class="marquee-group">
+          <span class="marquee-sep">WEBSITE *  SOCIAL-MEDIA ENGAGEMENT *  DIGITAL MARKETING SOLUTIONS * APP * UI/UX * BRAND STRATEGY * LET’S WORK *</span>
+          <span class="marquee-sep">WEBSITE *  SOCIAL-MEDIA ENGAGEMENT *  DIGITAL MARKETING SOLUTIONS * APP * UI/UX * BRAND STRATEGY * LET’S WORK *</span>
+        </div>
+        <div class="marquee-group" aria-hidden="true">
+          <span class="marquee-sep">WEBSITE *  SOCIAL-MEDIA ENGAGEMENT *  DIGITAL MARKETING SOLUTIONS * APP * UI/UX * BRAND STRATEGY * LET’S WORK *</span>
+          <span class="marquee-sep">WEBSITE *  SOCIAL-MEDIA ENGAGEMENT *  DIGITAL MARKETING SOLUTIONS * APP * UI/UX * BRAND STRATEGY * LET’S WORK *</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="https://wa.me/918434145095" target="_blank" class="whatsapp-float">
       <i class="bi bi-whatsapp"></i>
     </a>
 
